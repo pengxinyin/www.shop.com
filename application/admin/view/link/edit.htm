@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html><head>
+        <meta charset="utf-8">
+    <title>shop商城链接编辑页面</title>
+
+    <meta name="description" content="Dashboard">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!--Basic Styles-->
+    <link href="__admin__/style/bootstrap.css" rel="stylesheet">
+    <link href="__admin__/style/font-awesome.css" rel="stylesheet">
+    <link href="__admin__/style/weather-icons.css" rel="stylesheet">
+
+    <!--Beyond styles-->
+    <link id="beyond-link" href="__admin__/style/beyond.css" rel="stylesheet" type="text/css">
+    <link href="__admin__/style/demo.css" rel="stylesheet">
+    <link href="__admin__/style/typicons.css" rel="stylesheet">
+    <link href="__admin__/style/animate.css" rel="stylesheet">
+
+</head>
+<body>
+    <!-- 头部 -->
+     {include file="common/top"}
+    <!-- /头部 -->
+
+    <div class="main-container container-fluid">
+        <div class="page-container">
+        <!-- Page Sidebar -->
+          {include file="common/left"}
+        <!-- /Page Sidebar -->
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Page Breadcrumb -->
+                <div class="page-breadcrumbs">
+                    <ul class="breadcrumb">
+                        <li><a href="{:url('index/index')}">首页</a></li>
+                        <li><a href="{:url('link/lst')}">链接列表</a></li>
+                        <li class="active">修改链接</li>
+                    </ul>
+                </div>
+                <!-- /Page Breadcrumb -->
+
+                <!-- Page Body -->
+                <div class="page-body">
+
+<div class="row">
+    <div class="col-lg-12 col-sm-12 col-xs-12">
+        <div class="widget">
+            <div class="widget-header bordered-bottom bordered-blue">
+                <span class="widget-caption">修改链接</span>
+            </div>
+            <div class="widget-body">
+                <div id="horizontal-form">
+                    <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+                      <input type="hidden" name="id" value="{$data.id}" />
+                        <div class="form-group">
+                            <label for="title" class="col-sm-2 control-label no-padding-right">链接标题</label>
+                            <div class="col-sm-6">
+                                <input class="form-control"  placeholder="请输入链接名称" name="title" required=""
+                                value="{$data.title}" type="text">
+                            </div>
+                            <p class="help-block col-sm-4 red">* 必填</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="link_url" class="col-sm-2 control-label no-padding-right">链接网址</label>
+                            <div class="col-sm-6">
+                                <input class="form-control" value="{$data.link_url}" name="link_url" type="text">
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="logo" class="col-sm-2 control-label no-padding-right">链接logo</label>
+                            <div class="col-sm-6">
+                                <button class="file-input btn btn-info btn-file">
+                                    <input type="file"  name="logo">
+                                </button>
+                                <div style="margin-top:10px;">
+                                   {if condition="$data.logo neq ''"}
+                                   <img src="__uploads__/{$data.logo}" alt="" height="60">
+                                   {else /}
+                                   <span>暂无logo</span>
+                                   {/if}
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="description" class="col-sm-2 control-label no-padding-right">链接描述</label>
+                            <div class="col-sm-6">
+                                <textarea name="description" class="form-control">{$data.description}</textarea>
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="brand_status" class="col-sm-2 control-label no-padding-right">链接状态</label>
+                            <div class="col-sm-6">
+                                <div class="radio" style="float: left;margin-right:10px;">
+                                    <label>
+                                        <input name="status" value="1" type="radio" class="colored-blue"
+                                         {if condition="$data.status eq 1"} checked="checked" {/if}>
+                                         <span class="text">启用</span>
+                                    </label>
+                                </div>
+                                <div class="radio" style="float: left;">
+                                    <label>
+                                        <input name="status" value="0" type="radio" class="colored-blue"
+                                         {if condition="$data.status eq 0"} checked="checked" {/if}>
+                                        <span class="text">禁用</span>
+                                    </label>
+                                </div>
+
+                            </div>
+
+                        </div>
+                         <div class="form-group">
+                            <label for="brand_status" class="col-sm-2 control-label no-padding-right">链接类型</label>
+                            <div class="col-sm-6">
+                                <div class="radio" style="float: left;margin-right:10px;">
+                                    <label>
+                                        <input name="type" value="1" type="radio" checked="checked" class="colored-blue"  {if condition="$data.type eq 1"} checked="checked" {/if}>
+                                        <span class="text">文字</span>
+                                    </label>
+                                </div>
+                                <div class="radio" style="float: left;">
+                                    <label>
+                                        <input name="type" value="2" type="radio" class="colored-blue"
+                                         {if condition="$data.type eq 2"} checked="checked" {/if}>
+                                        <span class="text">图片</span>
+                                    </label>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-info">保存信息</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+                <!-- /Page Body -->
+            </div>
+            <!-- /Page Content -->
+        </div>
+    </div>
+
+        <!--Basic Scripts-->
+    <script src="__admin__/style/jquery_002.js"></script>
+    <script src="__admin__/style/bootstrap.js"></script>
+    <script src="__admin__/style/jquery.js"></script>
+    <!--Beyond Scripts-->
+    <script src="__admin__/style/beyond.js"></script>
+
+
+
+</body></html>

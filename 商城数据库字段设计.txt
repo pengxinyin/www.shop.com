@@ -1,0 +1,161 @@
+系统栏目分类
+|--cate表:
+|----id   cate_name  cate_type  keywords  description  sort  pid
+|----cate_type分类
+|------ 1: 系统分类 2:帮助分类 3:网店分类 4:网店信息 5:普通分类
+
+品牌分类
+|--brand表
+|----字段
+|------id brand_name brand_url brand_img brand_description sort status
+
+文章分类
+|--article表
+|----字段
+|------id title keywords description author email link_url thumb content show_top show_status cate_id addtime
+
+友情链接表
+|--link表
+|----字段 id title link_url logo description type status
+
+网店配置
+|--conf表
+|----字段
+|------ id  ename     cname  form_type    conf_type    values                 value
+|------ 1   sitename  站点   表单类型     配置类型     可选项(以逗号分隔)     默认值
+
+网站商品分类
+|--category
+|----字段
+|------ id cate_name    cate_img       keywords   description  show_cate                    sort          pid          search_attr_ids  price_range_num
+|-------ID 商品分类名称  商品分类缩略图    关键词      描述        显示分类 1：显示 0：隐藏       商品分类排序  上级分类id     筛选属性         价格区间数量
+
+商品类型
+|--type表
+|----字段
+|------ id type_name
+
+商品属性
+|--attr表
+|----字段
+|------ id attr_name attr_type            attr_values  type_id
+|------ 1  属性名称  属性类型(单选/唯一)  属性值       所属属性分类
+
+商品主表
+|--goods表
+|----字段
+|------id goods_name  goods_code  og_thumb sm_thumb mid_thumb big_thumb markte_price shop_price  on_sale  category_id   brand_id  type_id  goods_detail  keywords description
+
+|------goods_weight weight_unit
+
+会员级别
+|--member_level表
+|----字段
+|------id level_name  bom_point top_point  rate
+
+会员价格
+|--member_price表
+|----字段
+|------id mprice mlevel_id  goods_id
+
+|商品相册
+|--goods_photo表
+|----字段
+|-----id goods_id sm_photo mid_photo big_photo
+
+|商品属性映射表
+|--goods_attr
+|----字段
+|------id  attr_id  attr_value  attr_price  goods_id
+
+|导航表
+|--nav表
+|--字段
+|-----id      nav_name   nav_url     open      pos       sort
+|-----导航ID  导航名称    导航链接     打开方式   导航位置  导航排序
+
+|推荐位表
+|--recpos表
+|--字段
+|---- id          rec_name   rec_type
+|---- 推荐位id    推荐位名称   推荐位类型
+
+|商品推荐位映射表（一般是多对多关系建立的中间表，通常第三方中间表是不需要主键的)
+|--rec_item表
+|--字段
+|----recpos_id   value_id                    value_type
+|----推荐位id    推荐位对应商品或者分类id       推荐位类型
+
+|栏目关联词表
+|---category_words
+|---字段
+|---id  category_id   word      link_url
+|---ID  关联的栏目Id   关联词     关联词链接
+
+
+|栏目品牌表和广告
+|--category_brands表
+|--字段 
+|--id  brands_id    pro_img     pro_url        category_id
+|--ID  关联品牌id   推广图地址    推广图链接      关联栏目Id
+
+|--首页左侧轮播广告位
+|--category_ad
+|--字段
+|----id  img_src  link_url   position  category_id
+|----ID  图片地址  图片链接   广告位置   关联栏目id
+
+|------------------------------------------------------------------------------------
+|--广告位管理
+|--adpos表
+|--字段
+|----id  name          width      height
+|----ID  广告位名称     广告位宽度  广告位高度
+
+|--广告管理(单图广告)
+|--ad表
+|--字段
+|----id ad_name    on        type       img_scr        link_url       adpos_id
+|----ID 广告名称   是否开启    广告类型   单图图片地址    单图图片链接    所属广告位
+
+|--广告管理(附加表--轮播广告)
+|--ad_flash表
+|--字段
+|----id   fimg_src     flink_url     ad_id
+|----ID   轮播图片地址  轮播图片链接   所属广告
+|------------------------------------------------------------------------------------
+
+|--用户主表
+|---user表
+|---字段
+|----id  username passowrd  email  mobile_phone  checked  email_checked   phone_checked  points
+|----ID  用户名    密码      邮箱   手机           是否验证  邮箱验证        手机验证        会员积分
+
+
+|--订单基本信息表
+|--order表
+|--字段
+|----id  out_trade_no   user_id     goods_total_price  order_total_price  payment    distribution   order_status  pay_status  post_status  post_spent   name  phone province  city  country  address  order_time
+|----ID  订单编号        订单联系人   商品总价            订单总价           支付方式    运输方式        订单状态       支付状态    发货状态      运费         收货人 手机  省        世     区县     详细地址  下单时间
+
+|--订单和商品对应关系表
+|--order_goods表
+|--字段
+|----id  goods_id  goods_name  goods_price  goods_markted_price  goods_attr_id      goods_attr_str  goods_num    order_id  
+|----ID  商品ID    商品名称     商品本店价    商品市场价            商品属性id字符串    商品属性值文本   商品数量      订单编号
+
+
+
+|--收获人地址表
+|--address表
+|--字段
+|----id  user_id  name   phone     tel        province  city    country   address    email    zipcode     sign_building      best_time   
+|----ID  收货人id         手机号码  固定电话    省份       城市    区/县      详细地址   邮箱    邮编        地址别名            最佳收货时间     
+
+
+
+|--商品评论
+|--comment
+|--字段
+|----id content  uid      star  goods_id  used         add_time
+|----ID 评论内容 用户id    星级  商品ID     是否有用      添加时间

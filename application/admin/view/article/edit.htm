@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="utf-8">
+    <title>shop商城-文章编辑页面</title>
+
+    <meta name="description" content="Dashboard">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!--Basic Styles-->
+    <link href="__admin__/style/bootstrap.css" rel="stylesheet">
+    <link href="__admin__/style/font-awesome.css" rel="stylesheet">
+    <link href="__admin__/style/weather-icons.css" rel="stylesheet">
+
+    <!--Beyond styles-->
+    <link id="beyond-link" href="__admin__/style/beyond.css" rel="stylesheet" type="text/css">
+    <link href="__admin__/style/demo.css" rel="stylesheet">
+    <link href="__admin__/style/typicons.css" rel="stylesheet">
+    <link href="__admin__/style/animate.css" rel="stylesheet">
+    <!-- 百度富文本编辑器的加载 -->
+    <script type="text/javascript" src="__plus__/ueditor/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="__plus__/ueditor/ueditor.all.js"></script>
+    <script type="text/javascript" src="__plus__/ueditor/lang/zh-cn/zh-cn.js"></script>
+
+</head>
+<body>
+    <!-- 头部 -->
+     {include file="common/top"}
+    <!-- /头部 -->
+
+    <div class="main-container container-fluid">
+        <div class="page-container">
+        <!-- Page Sidebar -->
+          {include file="common/left"}
+        <!-- /Page Sidebar -->
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Page Breadcrumb -->
+                <div class="page-breadcrumbs">
+                    <ul class="breadcrumb">
+                        <li><a href="{:url('index/index')}">首页</a></li>
+                        <li><a href="{:url('article/lst')}">文章管理</a></li>
+                        <li class="active">修改文章</li>
+                    </ul>
+                </div>
+                <!-- /Page Breadcrumb -->
+
+                <!-- Page Body -->
+                <div class="page-body">
+
+<div class="row">
+    <div class="col-lg-12 col-sm-12 col-xs-12">
+        <div class="widget">
+            <div class="widget-header bordered-bottom bordered-blue">
+                <span class="widget-caption">修改文章</span>
+            </div>
+            <div class="widget-body">
+                <div id="horizontal-form">
+                    <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+                    <!-- 隐藏域 用于获取要编辑提交更改的数据id -->
+                     <input type="hidden" name="id" value="{$artCurrent.id}">
+                        <div class="form-group">
+                            <label for="title" class="col-sm-2 control-label no-padding-right">所属栏目</label>
+                            <div class="col-sm-6">
+                               <select name="cate_id" class="form-control">
+                                   <option value="">选择栏目</option>
+
+                                       {volist name="artList" id="cate"}
+                                        <option  value="{$cate.id}"
+                                        {if condition="$artCurrent.cate_id eq $cate.id "} selected="selected" {/if}
+                                        {in name="$cate.id" value="1,2"} disabled="disabled" {/in}
+                                        >
+                                          |<?php echo str_repeat("-",$cate['level']*4)?> {$cate.cate_name}
+                                        </option>
+                                       {/volist}
+
+
+                               </select>
+                            </div>
+                            <p class="help-block col-sm-4 red">* 必填</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="title" class="col-sm-2 control-label no-padding-right">文章标题</label>
+                            <div class="col-sm-6">
+                                <input class="form-control"  value="{$artCurrent.title}" name="title" required="" type="text">
+                            </div>
+                            <p class="help-block col-sm-4 red">* 必填</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="brand_status" class="col-sm-2 control-label no-padding-right">是否置顶</label>
+                            <div class="col-sm-6">
+                                <div class="radio" style="float: left;margin-right:10px;">
+                                    <label>
+                                        <input name="show_top" value="1" {if condition="$artCurrent.show_top eq 1"} checked="checked" {/if} type="radio"  class="colored-blue">
+                                        <span class="text">是</span>
+                                    </label>
+                                </div>
+                                <div class="radio" style="float: left;">
+                                    <label>
+                                        <input name="show_top" value="0" type="radio" {if condition="$artCurrent.show_top eq 0"} checked="checked" {/if} class="colored-blue">
+                                        <span class="text">否</span>
+                                    </label>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="brand_status" class="col-sm-2 control-label no-padding-right">显示状态</label>
+                            <div class="col-sm-6">
+                                <div class="radio" style="float: left;margin-right:10px;">
+                                    <label>
+                                        <input name="show_status" value="1" type="radio" {if condition="$artCurrent.show_status eq 1"} checked="checked" {/if} class="colored-blue">
+                                        <span class="text">是</span>
+                                    </label>
+                                </div>
+                                <div class="radio" style="float: left;">
+                                    <label>
+                                        <input name="show_status" value="0" type="radio" {if condition="$artCurrent.show_status eq 0"} checked="checked" {/if} class="colored-blue">
+                                        <span class="text">否</span>
+                                    </label>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="keywords" class="col-sm-2 control-label no-padding-right">关键词</label>
+                            <div class="col-sm-6">
+                                <textarea name="keywords"  class="form-control"
+                                placeholder="请输入文章关键词" >{$artCurrent.keywords}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="description" class="col-sm-2 control-label no-padding-right">描述</label>
+                            <div class="col-sm-6">
+                                <textarea name="description" class="form-control"
+                                placeholder="请输入文章描述">{$artCurrent.description}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="author" class="col-sm-2 control-label no-padding-right">作者</label>
+                            <div class="col-sm-6">
+                                <input class="form-control" value="{$artCurrent.author}" name="author" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="col-sm-2 control-label no-padding-right">邮箱</label>
+                            <div class="col-sm-6">
+                                <input class="form-control" value="{$artCurrent.email}" name="email" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="link_url" class="col-sm-2 control-label no-padding-right">链接地址</label>
+                            <div class="col-sm-6">
+                                <input class="form-control" value="{$artCurrent.link_url}" name="link_url" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="thumb" class="col-sm-2 control-label no-padding-right">缩略图</label>
+                            <div class="col-sm-6">
+                                 <button class="file-input btn btn-info btn-file">
+                                    <input type="file"  name="thumb" >
+                                </button>
+                                <!-- 获取后台img文件 -->
+                                <div style="margin-top:10px;">
+                                    {if condition="$artCurrent.thumb neq '' "}
+                                    <img src="__uploads__/{$artCurrent.thumb}" alt="" height="30">
+                                    {else /}
+                                    <span>暂无缩略图</span>
+                                {/if}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="content" class="col-sm-2 control-label no-padding-right">文章内容</label>
+                            <div class="col-sm-6">
+                                <textarea name="content" id="content" >{$artCurrent.content}</textarea>
+                               <!--  <script id="content" name="content" type="text/plain">
+
+                                </script> -->
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-info">保存信息</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+                </div>
+                <!-- /Page Body -->
+            </div>
+            <!-- /Page Content -->
+        </div>
+    </div>
+
+     <!--Basic Scripts-->
+    <script src="__admin__/style/jquery_002.js"></script>
+    <script src="__admin__/style/bootstrap.js"></script>
+    <script src="__admin__/style/jquery.js"></script>
+    <!--Beyond Scripts-->
+    <script src="__admin__/style/beyond.js"></script>
+
+    <!-- 实例化百度editor编辑器 -->
+    <!-- 实例化编辑器 -->
+    <script type="text/javascript">
+        var ue = UE.getEditor('content',{initialFrameHeight:400,initialFrameWidth:800});
+
+    </script>
+
+
+
+</body>
+
+
+</html>

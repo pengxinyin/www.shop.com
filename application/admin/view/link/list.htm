@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html><head>
+	    <meta charset="utf-8">
+    <title>shop商城商品链接列表</title>
+
+    <meta name="description" content="Dashboard">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!--Basic Styles-->
+    <link href="__admin__/style/bootstrap.css" rel="stylesheet">
+    <link href="__admin__/style/font-awesome.css" rel="stylesheet">
+    <link href="__admin__/style/weather-icons.css" rel="stylesheet">
+
+    <!--Beyond styles-->
+    <link id="beyond-link" href="__admin__/style/beyond.css" rel="stylesheet" type="text/css">
+    <link href="__admin__/style/demo.css" rel="stylesheet">
+    <link href="__admin__/style/typicons.css" rel="stylesheet">
+    <link href="__admin__/style/animate.css" rel="stylesheet">
+
+</head>
+<body>
+	<!-- 头部 -->
+    {include file="common/top"}
+	<!-- /头部 -->
+
+	<div class="main-container container-fluid">
+		<div class="page-container">
+		<!-- Page Sidebar -->
+        {include file="common/left"}
+        <!-- /Page Sidebar -->
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Page Breadcrumb -->
+                <div class="page-breadcrumbs">
+                    <ul class="breadcrumb">
+                     <li> <a href="{:url('index/index')}">首页</a></li>
+                     <li class="active">链接列表</li>
+                    </ul>
+                </div>
+                <!-- /Page Breadcrumb -->
+
+                <!-- Page Body -->
+                <div class="page-body">
+
+<button type="button" tooltip="添加链接" class="btn btn-sm btn-info btn-addon" onClick="javascript:window.location.href = '{:url('link/add')}'"> <i class="fa fa-plus"></i>增加链接
+</button>
+<div class="row">
+    <div class="col-lg-12 col-sm-12 col-xs-12">
+        <div class="widget">
+            <div class="widget-body">
+                <div class="flip-scroll">
+                 <form action="" method="post" >
+
+                    <table class="table  table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th class="text-center" width="5%">链接ID</th>
+                                <th class="text-center" width="10%">链接名称</th>
+                                <th class="text-left" width="20%">链接网址</th>
+                                <th class="text-center" width="5%">链接logo</th>
+                                <th class="text-left" width="20%">链接描述</th>
+                                <th class="text-center" width="5%">链接状态</th>
+                                <th class="text-center" width="5%">链接类型</th>
+                                <th class="text-center" width="10%">排序</th>
+                                <th class="text-center" width="10%">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                          {volist name="data" id="value"}
+                            <tr>
+                                <td align="center">{$value.id}</td>
+                                <td align="center">{$value.title}</td>
+                                <td align="left"><a href="{$value.link_url}" target="_blank">{$value.link_url}</a></td>
+                                <td align="center">
+                                <!-- 判断图片是否为空 neq是赋值的意思-->
+                                {if condition="$value.logo neq '' "}
+                                 <img src="__uploads__/{$value.logo}" alt="" height="30">
+                                {else /}
+                                 暂无图片
+                                {/if}
+                                </td>
+                                <td align="left">
+                                  {if condition="$value.description neq '' "}
+                                   <span>{$value.description|cut_str=###,20}</span>
+                                  {else /}
+                                  暂无描述
+                                  {/if}
+                                </td>
+                                <td align="center">
+                                <!-- 判断链接状态  eq是等于的意思 -->
+                                 {if condition ="$value.status eq 1"}
+                                  <img src="__admin__/images/correct.png" height="30">
+                                 {else /}
+                                  <img src="__admin__/images/error.png" height="30">
+                                 {/if}
+                                </td>
+                                <td align="center">
+                                <!-- 判断链接状态  eq是等于的意思 -->
+                                 {if condition ="$value.type eq 1"}
+                                 <span>文字</span>
+                                 {/if}
+                                 {if condition ="$value.type eq 2"}
+                                 <span>图片</span>
+                                 {/if}
+
+                                </td>
+                                <td align="center" style="vertical-align:middle;">
+                                <!-- sort和img一样要采用数组的形式，不然每次存储的数据是一样的！ -->
+                                <!-- 修改sort要找到修改sort的id -->
+                                  <input type="text" name="sort[{$value.id}]" value="{$value.sort}" style="width:60px;text-align:center;">
+
+                                </td>
+
+                                <td align="center">
+                                    <a href="{:url('link/edit',['id'=>$value.id])}" class="btn btn-sky btn-sm ">
+                                        <i class="fa fa-edit"></i> 编辑
+                                    </a>
+                                    <!-- 删除操作把id传递过去 -->
+                                    <a href="#" onClick="warning('确实要删除吗', '{:url('del',
+                                     ['id'=>$value.id])}')" class="btn btn-danger btn-sm ">
+
+                                        <i class="fa fa-trash-o"></i> 删除
+                                    </a>
+                                </td>
+                            </tr>
+                           {/volist}
+                           <tr>
+                                <td align="center" style="border:0 !important;"></td>
+                                <td align="center" style="border:0 !important;"></td>
+                                <td align="center" style="border:0 !important;"></td>
+                                <td align="center" style="border:0 !important;"></td>
+                                <td align="center" style="border:0 !important;"></td>
+                                <td align="center" style="border:0 !important;"></td>
+                                <td align="center" style="border:0 !important;"></td>
+                                <td align="center">
+                                    <input type="submit" value="提交" class="btn btn-info"/>
+                                </td>
+                                <td align="center" style="border:0 !important;"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </form>
+                </div>
+                <!-- 对于发送过来的数据进行分页操作 -->
+                <div style="margin-top:20px; text-align:right;" class="fenye">
+                     {$data->render()}
+                </div>
+
+                <div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+                </div>
+                <!-- /Page Body -->
+            </div>
+            <!-- /Page Content -->
+		</div>
+	</div>
+
+	    <!--Basic Scripts-->
+    <script src="__admin__/style/jquery_002.js"></script>
+    <script src="__admin__/style/bootstrap.js"></script>
+    <script src="__admin__/style/jquery.js"></script>
+    <!--Beyond Scripts-->
+    <script src="__admin__/style/beyond.js"></script>
+
+
+
+</body></html>

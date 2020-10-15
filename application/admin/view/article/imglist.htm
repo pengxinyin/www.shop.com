@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html><head>
+	    <meta charset="utf-8">
+    <title>shop商城商品品牌列表</title>
+
+    <meta name="description" content="Dashboard">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!--Basic Styles-->
+    <link href="__admin__/style/bootstrap.css" rel="stylesheet">
+    <link href="__admin__/style/font-awesome.css" rel="stylesheet">
+    <link href="__admin__/style/weather-icons.css" rel="stylesheet">
+
+    <!--Beyond styles-->
+    <link id="beyond-link" href="__admin__/style/beyond.css" rel="stylesheet" type="text/css">
+    <link href="__admin__/style/demo.css" rel="stylesheet">
+    <link href="__admin__/style/typicons.css" rel="stylesheet">
+    <link href="__admin__/style/animate.css" rel="stylesheet">
+
+</head>
+<body>
+	<!-- 头部 -->
+    {include file="common/top"}
+	<!-- /头部 -->
+
+	<div class="main-container container-fluid">
+		<div class="page-container">
+		<!-- Page Sidebar -->
+        {include file="common/left"}
+        <!-- /Page Sidebar -->
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Page Breadcrumb -->
+                <div class="page-breadcrumbs">
+                    <ul class="breadcrumb">
+                     <li> <a href="{:url('index/index')}">首页</a></li>
+                     <li class="active">图片管理</li>
+                    </ul>
+                </div>
+                <!-- /Page Breadcrumb -->
+
+                <!-- Page Body -->
+                <div class="page-body">
+<div class="row">
+    <div class="col-lg-12 col-sm-12 col-xs-12">
+        <div class="widget">
+            <div class="widget-body">
+                <div class="flip-scroll">
+                    <table class="table  table-bordered table-hover">
+                        <thead>
+                            <tr>
+
+                                <th class="text-left">图片路径</th>
+                                <th class="text-center" width="10%">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {volist name="imgSrc" id="imgSrc"}
+                            <tr>
+                                <!-- 图片标题 -->
+                                <td align="left" >
+                                    <img src="/{$imgSrc}"  height="60">
+                                </td>
+                                <!-- 图片编辑/删除操作 -->
+                                <td align="center" style="line-height: 60px;" >
+
+                                    <!-- 删除操作把id传递过去 -->
+                                    <a href="#" onclick="return del_img(this)" id="/{$imgSrc}" class="btn btn-danger btn-sm " >
+                                    <i class="fa fa-trash-o"></i> 删除
+                                    </a>
+                                </td>
+
+                            </tr>
+                        {/volist}
+                        </tbody>
+                    </table>
+
+                    <script type="text/javascript">
+                        //发送ajax请求删除图片
+                        function del_img(o){
+                             //删除取消提醒
+                             if(!confirm('确定删除该图片？')){
+                                return false;
+                             }
+
+                             //定义img文件的发送地址
+                             var img_url = "{:url('del_img')}";
+                             // alert(img_url);
+                             // /admin.php/article/del_img.html
+                             //定义img文件的绝对路径地址
+                             var img_src = $(o).attr('id');
+                             // alert(img_src);
+                             // /ueditor/20190322/1553246624119800.jpg
+
+                             $.ajax({
+                                url : img_url,
+                                type : "post",
+                                dataType : "json",
+                                data : {img_src:img_src},
+                                success : function(data) {
+                                   if(data==1){
+                                      $(o).parent().parent().remove();
+                                      alert('删除图片成功！');
+                                   }else if(data==2){
+                                      alert('删除图片失败！');
+                                   }else{
+                                      alert('图片不存在！');
+                                   }
+                                }
+                            });
+                             
+                        }
+                    </script>
+                </div>
+                <div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+                </div>
+                <!-- /Page Body -->
+            </div>
+            <!-- /Page Content -->
+		</div>
+	</div>
+
+	    <!--Basic Scripts-->
+    <script src="__admin__/style/jquery_002.js"></script>
+    <script src="__admin__/style/bootstrap.js"></script>
+    <script src="__admin__/style/jquery.js"></script>
+    <!--Beyond Scripts-->
+    <script src="__admin__/style/beyond.js"></script>
+
+
+
+</body></html>
