@@ -39,7 +39,7 @@
                     <li>
                         <a href="{:url('Index/index')}">首页</a>
                     </li>
-                    <li class="active">商品类型管理</li>
+                    <li class="active">商品属性列表管理</li>
                 </ul>
             </div>
             <!-- /Page Breadcrumb -->
@@ -47,7 +47,7 @@
             <!-- Page Body -->
             <div class="page-body">
 
-                <button type="button" tooltip="商品类型添加" class="btn btn-sm btn-azure btn-addon" onClick="javascript:window.location.href = '{:url('Type/add')}'">
+                <button type="button" tooltip="商品类型添加" class="btn btn-sm btn-azure btn-addon" onClick="javascript:window.location.href = '{:url('Attr/add')}'">
                     <i class="fa fa-plus"></i> Add
                 </button>
                 <div class="row">
@@ -58,25 +58,31 @@
                                     <table class="table table-bordered table-hover">
                                         <thead class="">
                                             <tr>
-                                                <th class="text-center" width="10%">商品ID</th>
-                                                <th class="text-center" width="30%">商品类型名称</th>
-                                                <th class="text-center" width="10%">操作</th>
+                                                <th class="text-center" width="10%">商品属性列表ID</th>
+                                                <th class="text-center" width="30%">商品属性名称</th>
+                                                <th class="text-center" width="10%">商品属性类型</th>
+                                                <th class="text-center" width="10%">所属类型</th>
+                                                <th class="text-center" width="20%">商品属性值</th>
+                                                <th class="text-center" width="20%">操作</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {volist name="typeRes" id="type"}
+                                            {volist name="attrData" id="attr"}
                                             <tr>
-                                                <td align="center">{$type.id}</td>
-                                                <td align="center">{$type.type_name}</td>
+                                                <td align="center">{$attr.id}</td>
+                                                <td align="center">{$attr.attr_name}</td>
                                                 <td align="center">
-                                                    <a href="{:url('Attr/lst',['id'=>$type.id])}" class="btn btn-blue btn-sm ">
-                                                        <i class="fa fa-list"></i> 属性列表
-                                                    </a>
-                                                    <a href="{:url('Type/edit',['id'=>$type.id])}" class="btn btn-sky btn-sm ">
+                                                    {if condition="$attr['attr_type'] eq 1"}单选 {else/}唯一{/if}
+                                                </td>
+                                                <td align="center">{$attr.type_id}</td>
+                                                <td align="center">{$attr.attr_values}</td>
+                                                <td align="center">
+                                                   
+                                                    <a href="{:url('Attr/edit',['id'=>$attr.id])}" class="btn btn-sky btn-sm ">
                                                         <i class="fa fa-edit"></i> 编辑
                                                     </a>
                                                     <!-- 删除操作把id传递过去 -->
-                                                    <a href="#" onClick="warning('确实要删除吗', '{:url('del', ['id'=>$type.id])}')" class="btn btn-danger btn-sm ">
+                                                    <a href="#" onClick="warning('确实要删除吗', '{:url('del', ['id'=>$attr.id])}')" class="btn btn-danger btn-sm ">
                 
                                                         <i class="fa fa-trash-o"></i> 删除
                                                     </a>
