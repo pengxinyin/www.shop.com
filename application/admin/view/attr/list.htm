@@ -60,7 +60,9 @@
                                             <tr>
                                                 <th class="text-center" width="10%">商品属性列表ID</th>
                                                 <th class="text-center" width="30%">商品属性名称</th>
+                                                <!-- 属性类型  指的是唯一还是单选 -->
                                                 <th class="text-center" width="10%">商品属性类型</th>
+                                                <!-- 类型管理的类型 -->
                                                 <th class="text-center" width="10%">所属类型</th>
                                                 <th class="text-center" width="20%">商品属性值</th>
                                                 <th class="text-center" width="20%">操作</th>
@@ -74,7 +76,7 @@
                                                 <td align="center">
                                                     {if condition="$attr['attr_type'] eq 1"}单选 {else/}唯一{/if}
                                                 </td>
-                                                <td align="center">{$attr.type_id}</td>
+                                                <td align="center">{$attr.type_name}</td>
                                                 <td align="center">{$attr.attr_values}</td>
                                                 <td align="center">
                                                    
@@ -94,7 +96,7 @@
                                 </div>
                                 <!-- 对于发送过来的数据进行分页操作 -->
                                 <div style="margin-top:20px; text-align:right;" class="fenye">
-                                    
+                                    {$attrData->render()}
                                 </div>
                                  <div>
                             </div>

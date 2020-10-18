@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html><head>
 	    <meta charset="utf-8">
-    <title>shop品牌添加</title>
+    <title>shop会员级别</title>
 
     <meta name="description" content="Dashboard">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,9 +39,9 @@
                         <a href="{:url('Index/index')}">首页</a>
                     </li>
                     <li>
-                        <a href="{:url('Brand/lst')}">品牌管理</a>
+                        <a href="{:url('MemberLevel/lst')}">会员级别管理</a>
                     </li>
-                    <li class="active">添加品牌</li>
+                    <li class="active">添加会员级别</li>
                     </ul>
                 </div>
                 <!-- /Page Breadcrumb -->
@@ -53,58 +53,39 @@
     <div class="col-lg-12 col-sm-12 col-xs-12">
         <div class="widget">
             <div class="widget-header bordered-bottom bordered-blue">
-                <span class="widget-caption">新增品牌</span>
+                <span class="widget-caption">新增会员级别</span>
             </div>
             <div class="widget-body">
                 <div id="horizontal-form">
-                    <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
+                    <form class="form-horizontal" role="form" action="" method="post" >
                         <div class="form-group">
-                            <label for="brand_name" class="col-sm-2 control-label no-padding-right">品牌名称</label>
+                            <label for="level_name" class="col-sm-2 control-label no-padding-right">会员级别名称</label>
                             <div class="col-sm-6">
-                                <input class="form-control"  placeholder="请输入品牌名称" name="brand_name" required="" type="text">
+                                <input class="form-control"  placeholder="请输入会员级别名称" name="level_name" required="" type="text">
                             </div>
                             <p class="help-block col-sm-4 red">* 必填</p>
                         </div>
                         <div class="form-group">
-                            <label for="brand_url" class="col-sm-2 control-label no-padding-right">品牌网址</label>
+                            <label for="bom_point" class="col-sm-2 control-label no-padding-right">级别积分下限</label>
                             <div class="col-sm-6">
-                                <input class="form-control"  placeholder="http://" name="brand_url" required="" type="text">
+                                <input class="form-control"   name="bom_point" type="text">
                             </div>
-                          
+                            <p class="help-block col-sm-4 red">* 必填</p>
                         </div>
                         <div class="form-group">
-                            <label for="brand_img" class="col-sm-2 control-label no-padding-right">品牌logo</label>
+                            <label for="top_point" class="col-sm-2 control-label no-padding-right">级别积分上限</label>
                             <div class="col-sm-6">
-                                <input  placeholder="" name="brand_img" required="" type="file">
+                                <input class="form-control"  name="top_point" type="text">
                             </div>
-
+                            <p class="help-block col-sm-4 red">* 必填</p>
                         </div>
                         <div class="form-group">
-                            <label for="brand_description" class="col-sm-2 control-label no-padding-right">品牌描述</label>
+                            <label for="rate" class="col-sm-2 control-label no-padding-right">级别折扣率</label>
                             <div class="col-sm-6">
-                              <textarea class="form-control"  placeholder="请输入品牌描述" name="brand_description"></textarea>
+                                <input class="form-control" name="rate" type="text">
                             </div>
-                          
+                            <p class="help-block col-sm-4 red">* 必填</p>
                         </div>
-                        <div class="form-group">
-                            <label for="status" class="col-sm-2 control-label no-padding-right">品牌状态</label>
-                            <div class="col-sm-6">
-                                <div class="radio" style="float: left;margin-right:10px;">
-                                    <label>
-                                        <input name="status" value="1" type="radio" checked="checked" class="colored-blue">
-                                        <span class="text">显示</span>
-                                    </label>
-                                </div>
-                                <div class="radio" style="float: left;">
-                                    <label>
-                                        <input name="status" value="0" type="radio" class="colored-blue">
-                                        <span class="text">隐藏</span>
-                                    </label>
-                                </div>
-                            </div>
-                            
-                        </div>
-                    
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
                                 <button type="submit" class="btn btn-default">保存信息</button>
@@ -116,13 +97,7 @@
         </div>
     </div>
 </div>
-
-                </div>
-                <!-- /Page Body -->
-            </div>
-            <!-- /Page Content -->
-		</div>	
-	</div>
+</div>       <!-- /Page Body -->
 
 	    <!--Basic Scripts-->
     <script src=" __admin__/style/jquery_002.js"></script>

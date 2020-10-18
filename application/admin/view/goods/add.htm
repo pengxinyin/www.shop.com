@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html><head>
+	    <meta charset="utf-8">
+    <title>shop品牌添加</title>
+
+    <meta name="description" content="Dashboard">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!--Basic Styles-->
+    <link href=" __admin__/style/bootstrap.css" rel="stylesheet">
+    <link href=" __admin__/style/font-awesome.css" rel="stylesheet">
+    <link href=" __admin__/style/weather-icons.css" rel="stylesheet">
+
+    <!--Beyond styles-->
+    <link id="beyond-link" href=" __admin__/style/beyond.css" rel="stylesheet" type="text/css">
+    <link href=" __admin__/style/demo.css" rel="stylesheet">
+    <link href=" __admin__/style/typicons.css" rel="stylesheet">
+    <link href=" __admin__/style/animate.css" rel="stylesheet">
+
+     <!-- 百度富文本编辑器的加载 -->
+     <script type="text/javascript" src="__plus__/ueditor/ueditor.config.js"></script>
+     <!-- 编辑器源码文件 -->
+     <script type="text/javascript" src="__plus__/ueditor/ueditor.all.js"></script>
+     <script type="text/javascript" src="__plus__/ueditor/lang/zh-cn/zh-cn.js"></script>
+    <style type="text/css">
+        .price{
+            width: 150px;
+            display: inline-block;
+        }
+    </style>
+    
+</head>
+<body>
+	<!-- 头部 -->
+	{include file="common/top"}
+
+	<!-- /头部 -->
+	
+	<div class="main-container container-fluid">
+		<div class="page-container">
+			<!-- Page Sidebar -->
+            {include file="common/left"}
+            <!-- /Page Sidebar -->
+            <!-- Page Content -->
+        <div class="page-content">
+                <!-- Page Breadcrumb -->
+            <div class="page-breadcrumbs">
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="{:url('Index/index')}">首页</a>
+                    </li>
+                    <li>
+                        <a href="{:url('Goods/lst')}">商品</a>
+                    </li>
+                    <li class="active">添加商品</li>
+                    </ul>
+                </div>
+                <!-- /Page Breadcrumb -->
+
+                <!-- Page Body -->
+        <div class="page-body">
+                    
+<div class="row">
+    <div class="col-lg-12 col-sm-12 col-xs-12">
+        <form class="form-horizontal" role="form" action="" method="post" >
+            <!-- 商品信息开始 -->
+                <div class="widget flat radius-bordered"> 
+                    <div class="widget-body">
+                        <div class="widget-main ">
+                            <div class="tabbable">
+                                <ul class="nav nav-tabs tabs-flat" id="myTab11">
+                                    <li class="active">
+                                        <a data-toggle="tab" href="#baseinfo" aria-expanded="true" >
+                                            基本信息
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a data-toggle="tab" href="#goodsdes" >
+                                            描述信息
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a data-toggle="tab" href="#mbprice" >
+                                            会员价格
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a data-toggle="tab" href="#goodsattr" >
+                                            商品属性
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a data-toggle="tab" href="#goodsphoto">
+                                            商品相册
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content tabs-flat">
+                                    <div id="baseinfo" class="tab-pane active">
+                                        <div class="form-group">
+                                            <label for="goods_name" class="col-sm-2 control-label no-padding-right">商品名称</label>
+                                            <div class="col-sm-6">
+                                                <input class="form-control"  placeholder="请输入品牌名称" name="goods_name" required="" type="text">
+                                            </div>
+                                            <p class="help-block col-sm-4 red">* 必填</p>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="og_thumb" class="col-sm-2 control-label no-padding-right">商品主图</label>    
+                                            <div class="col-sm-6">
+                                                <input type="file" name="og_thumb" class="form-control" style="border: none; box-shadow: none;">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="on_sale" class="col-sm-2 control-label no-padding-right">是否上架</label>
+                                            <div class="col-sm-6">
+                                               
+                                                <div class="radio" style="float: left;margin-right:10px;">
+                                                    <label>
+                                                        <input name="on_sale" type="radio" class="colored-blue" value="是" checked="checked">
+                                                        <span class="text">是</span>
+                                                    </label>
+                                                </div>
+                                                
+                                                <div class="radio" style="float: left;margin-right:10px;">
+                                                    <label>
+                                                        <input name="on_sale" type="radio" class="colored-blue" value="否" >
+                                                        <span class="text">否</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="category_id" class="col-sm-2 control-label no-padding-right">所属栏目</label>    
+                                            <div class="col-sm-6">
+                                                <select name="category_id" id="" class="form-control">
+                                                    <option value="">请选择</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="brand_id" class="col-sm-2 control-label no-padding-right">所属品牌</label>    
+                                            <div class="col-sm-6" >
+                                                <select name="brand_id" id="" class="form-control">
+                                                    <option value="">请选择</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="marke_price" class="col-sm-2 control-label no-padding-right">市场价</label>
+                                            <div class="col-sm-6">
+                                                <input class="form-control"  placeholder="" name="marke_price" required="" type="text">
+                                            </div>
+                                            <p class="help-block col-sm-4 red">* 必填</p>
+                                        </div>
+                                        <div class="shop_price">
+                                            <label for="goods_name" class="col-sm-2 control-label no-padding-right">本店价</label>
+                                            <div class="col-sm-6">
+                                                <input class="form-control"  placeholder="" name="shop_price"  type="text">
+                                            </div>
+                                            <p class="help-block col-sm-4 red">* 必填</p>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="weight_unit" class="col-sm-2 control-label no-padding-right">商品的重量</label>
+                                            <div class="col-sm-6">
+                                                <input class="form-control"  placeholder="" name="weight_unit"  type="text" style="width: 300px; display: inline-block;">
+                                                <select name="" id="">
+                                                    <option value="kg">kg</option>
+                                                    <option value="g">g</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="goodsdes" class="tab-pane ">
+                                        <textarea name="" id="goods_des" cols="30" rows="10"></textarea>
+                                    </div>
+                                    <div id="mbprice" class="tab-pane ">
+                                        {volist name="mlRes" id="ml"}
+                                        <div class="form-group">
+                                            <label for="marke_price" class="col-sm-2 control-label no-padding-right">{$ml.level_name}</label>
+                                            <div class="col-sm-6">
+                                                <input class="form-control"   name="marke_price" required="" type="text">
+                                            </div>
+                                        </div>
+                                        {/volist}
+                                    </div>
+                                    <div id="goodsattr" class="tab-pane ">
+                                        <div class="form-group">
+                                            <label for="brand_id" class="col-sm-2 control-label no-padding-right">商品类型</label>    
+                                            <div class="col-sm-6" >
+                                                <select name="brand_id" id="" class="form-control">
+                                                    <option value="">请选择</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!-- 属性列表 -->
+                                        <div id="attr_list">
+                                            <div class="form-group">
+                                                <label for="brand_id" class="col-sm-2 control-label no-padding-right">颜色</label>    
+                                                <div class="col-sm-6" >
+                                                    <a href="#">[+]</a>
+                                                    <select >
+                                                        <option value="">黑色</option>
+                                                        <option value="">蓝色</option>
+                                                    </select>
+                                                    <input type="text" class="form-control price" placeholder="价格" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="brand_id" class="col-sm-2 control-label no-padding-right">材质</label>    
+                                                <div class="col-sm-6" >
+                                                    <select >
+                                                        <option value="">棉纶</option>
+                                                        <option value="">亚麻</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="goodsphoto" class="tab-pane">
+                                        <p>商品相册</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-10">
+                                         <button type="submit" class="btn btn-default">保存信息</button>
+                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+         <!-- 商品信息结束 -->
+           
+        </form>
+        </div>
+    </div>
+</div>     <!-- /Page Body -->
+
+	    <!--Basic Scripts-->
+    <script src=" __admin__/style/jquery_002.js"></script>
+    <script src=" __admin__/style/bootstrap.js"></script>
+    <script src=" __admin__/style/jquery.js"></script>
+    <!--Beyond Scripts-->
+    <script src=" __admin__/style/beyond.js"></script>
+    
+     <!-- 实例化百度editor编辑器 -->
+    <!-- 实例化编辑器 -->
+    <script type="text/javascript">
+        var ue = UE.getEditor('goods_des',{initialFrameHeight:800,initialFrameWidth:1200});
+
+    </script>
+
+
+
+</body></html>

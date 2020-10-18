@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>童老师ThinkPHP交流群：484519446</title>
+		<title>shop会员级别</title>
 
 		<meta name="description" content="Dashboard">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,7 +39,7 @@
                     <li>
                         <a href="{:url('Index/index')}">首页</a>
                     </li>
-                    <li class="active">商品类型管理</li>
+                    <li class="active">会员级别管理</li>
                 </ul>
             </div>
             <!-- /Page Breadcrumb -->
@@ -47,7 +47,7 @@
             <!-- Page Body -->
             <div class="page-body">
 
-                <button type="button" tooltip="商品类型添加" class="btn btn-sm btn-azure btn-addon" onClick="javascript:window.location.href = '{:url('Type/add')}'">
+                <button type="button" tooltip="会员级别添加" class="btn btn-sm btn-azure btn-addon" onClick="javascript:window.location.href = '{:url('MemberLevel/add')}'">
                     <i class="fa fa-plus"></i> Add
                 </button>
                 <div class="row">
@@ -58,25 +58,28 @@
                                     <table class="table table-bordered table-hover">
                                         <thead class="">
                                             <tr>
-                                                <th class="text-center" width="10%">商品ID</th>
-                                                <th class="text-center" width="30%">商品类型名称</th>
-                                                <th class="text-center" width="10%">操作</th>
+                                                <th class="text-center" width="10%">会员级别ID</th>
+                                                <th class="text-center" width="20%">会员级别名称</th>
+                                                <th class="text-center" width="10%">会员级别下限</th>
+                                                <th class="text-center" width="10%">会员级别上限</th>
+                                                <th class="text-center" width="20%">会员级别折扣率</th>
+                                                <th class="text-center" width="30%">操作</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {volist name="typeRes" id="type"}
+                                            {volist name="mlRes" id="ml"}
                                             <tr>
-                                                <td align="center">{$type.id}</td>
-                                                <td align="center">{$type.type_name}</td>
+                                                <td align="center">{$ml.id}</td>
+                                                <td align="center">{$ml.level_name}</td>
+                                                <td align="center">{$ml.bom_point}</td>
+                                                <td align="center">{$ml.top_point}</td>
+                                                <td align="center">{$ml.rate}</td>
                                                 <td align="center">
-                                                    <a href="{:url('Attr/lst',['type_id'=>$type.id])}" class="btn btn-blue btn-sm ">
-                                                        <i class="fa fa-list"></i> 属性列表
-                                                    </a>
-                                                    <a href="{:url('Type/edit',['id'=>$type.id])}" class="btn btn-sky btn-sm ">
+                                                    <a href="{:url('MemberLevel/edit',['id'=>$ml.id])}" class="btn btn-sky btn-sm ">
                                                         <i class="fa fa-edit"></i> 编辑
                                                     </a>
                                                     <!-- 删除操作把id传递过去 -->
-                                                    <a href="#" onClick="warning('确实要删除吗', '{:url('del', ['id'=>$type.id])}')" class="btn btn-danger btn-sm ">
+                                                    <a href="#" onClick="warning('确实要删除吗', '{:url('del', ['id'=>$ml.id])}')" class="btn btn-danger btn-sm ">
                 
                                                         <i class="fa fa-trash-o"></i> 删除
                                                     </a>

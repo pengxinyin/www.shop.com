@@ -25,223 +25,225 @@
 <!-- /头部 -->
 
 <div class="main-container container-fluid">
-<div class="page-container">
-<!-- Page Sidebar -->
-{include file="common/left"}
-<!-- /Page Sidebar -->
-<!-- Page Content -->
-<div class="page-content">
-<!-- Page Breadcrumb -->
-<div class="page-breadcrumbs">
-    <ul class="breadcrumb">
-        <li><a href="{:url('index/index')}">首页</a></li>
-        <li><a href="{:url('conf/lst')}">配置管理</a></li>
-        <li class="active">配置列表</li>
-    </ul>
-</div>
-<!-- /Page Breadcrumb -->
+    <div class="page-container">
+    <!-- Page Sidebar -->
+    {include file="common/left"}
+    <!-- /Page Sidebar -->
+    <!-- Page Content -->
+    <div class="page-content">
+        <!-- Page Breadcrumb -->
+        <div class="page-breadcrumbs">
+            <ul class="breadcrumb">
+                <li><a href="{:url('index/index')}">首页</a></li>
+                <li><a href="{:url('conf/lst')}">配置管理</a></li>
+                <li class="active">配置列表</li>
+            </ul>
+        </div>
+        <!-- /Page Breadcrumb -->
 
-<!-- Page Body -->
-<div class="page-body">
-    <div class="row">
-        <div class="col-lg-12 col-sm-12 col-xs-12">
-            <div class="widget">
-                <!-- 配置列表开始 -->
-                <div class="widget-body">
-                    <div class="widget-main ">
-                        <div class="tabbable">
-                            <ul class="nav nav-tabs  tabs-flat">
-                                <li class="active">
-                                <a data-toggle="tab" href="#FlatTab-1" aria-expanded="true">店铺配置</a>
-                                </li>
-                                <li class="">
-                                <a data-toggle="tab" href="#FlatTab-2" aria-expanded="false">商品配置</a>
-                                </li>
+        <!-- Page Body -->
+        <div class="page-body">
+            <div class="row">
+                <div class="col-lg-12 col-sm-12 col-xs-12">
+                    <div class="widget">
 
-                            </ul>
-                            <div class="tab-content  tabs-flat">
-                                <div class="tab-pane active" id="FlatTab-1">
-                                    <div id="horizontal-form-conf">
-                                        <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
-                                            {foreach $shopConf as $key => $conf}
-                                            <div class="form-group">
-                                                <label for="cname" class="col-sm-2 control-label no-padding-right">{$conf.cname}</label>
-                                                <div class="col-sm-6">
-                                                <!-- 单行文本框 -->
-                                                    {if condition="$conf.form_type eq 'input' "}
-                                                    <input class="form-control"  name="{$conf.ename}" required="" type="text" value="{$conf.value}">
-                                                    {elseif condition="$conf.form_type eq 'textarea' "}
-                                                    <!-- 文本域 -->
-                                                    <textarea class="form-control" name="{$conf.ename}">{$conf.value}</textarea>
-                                                    {elseif condition="$conf.form_type =='radio' "}
-                                                    <!-- 单选项 -->
-                                                    <!-- 原生php循环开始用:开始 结束的时候要有结束符号 -->
-                                                    <?php if($conf['values']):
-                                                        $arr = explode(',',$conf['values']);
-                                                        foreach($arr as $k=>$v):?>
+                        <!-- 配置列表开始 -->
+                        <div class="widget-body">
+                            <div class="widget-main ">
+                                <div class="tabbable">
+                                    <ul class="nav nav-tabs  tabs-flat">
+                                        <li class="active">
+                                          <a data-toggle="tab" href="#FlatTab-1" aria-expanded="true">店铺配置</a>
+                                        </li>
+                                        <li class="">
+                                          <a data-toggle="tab" href="#FlatTab-2" aria-expanded="false">商品配置</a>
+                                        </li>
 
-                                                    <div class="radio" style="float: left;margin-right:10px;">
-                                                        <label>
-                                                            <input name="{$conf.ename}"  type="radio" class="colored-blue" value="{$v}"
-                                                            {if condition="$conf.value eq $v"} checked="checked" {/if}>
-                                                            <span class="text">{$v}</span>
-                                                        </label>
-                                                    </div>
-                                                    <?php endforeach;endif;?>
+                                    </ul>
+                                    <div class="tab-content  tabs-flat">
+                                        <div class="tab-pane active" id="FlatTab-1">
+                                            <div id="horizontal-form-conf">
+                                                <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+                                                    {foreach $shopConf as $key => $conf}
+                                                    <div class="form-group">
+                                                        <label for="cname" class="col-sm-2 control-label no-padding-right">{$conf.cname}</label>
+                                                        <div class="col-sm-6">
+                                                           <!-- 单行文本框 -->
+                                                            {if condition="$conf.form_type eq 'input' "}
+                                                            <input class="form-control"  name="{$conf.ename}" required="" type="text" value="{$conf.value}">
+                                                            {elseif condition="$conf.form_type eq 'textarea' "}
+                                                            <!-- 文本域 -->
+                                                            <textarea class="form-control" name="{$conf.ename}">{$conf.value}</textarea>
+                                                            {elseif condition="$conf.form_type =='radio' "}
+                                                            <!-- 单选项 -->
+                                                            <!-- 原生php循环开始用:开始 结束的时候要有结束符号 -->
+                                                            <?php if($conf['values']):
+                                                                  $arr = explode(',',$conf['values']);
+                                                                  foreach($arr as $k=>$v):?>
 
-                                                    {elseif condition="$conf.form_type eq 'checkbox' "}
-                                                    <!-- 多选项 -->
-                                                    <div class="checkbox">
-                                                        <!-- 第一层循环 判断可选值选项中是否有值 -->
-                                                        <?php if($conf['values']):
-                                                            $arr_values = explode(',',$conf['values']);
-                                                            $arr_value = explode(',',$conf['value']);
-                                                            foreach($arr_values as $k=>$v):?>
+                                                            <div class="radio" style="float: left;margin-right:10px;">
+                                                                <label>
+                                                                    <input name="{$conf.ename}"  type="radio" class="colored-blue" value="{$v}"
+                                                                     {if condition="$conf.value eq $v"} checked="checked" {/if}>
+                                                                    <span class="text">{$v}</span>
+                                                                </label>
+                                                            </div>
+                                                            <?php endforeach;endif;?>
 
-                                                            <label style="margin-right:10px">
-                                                                <input {if in_array($v,$arr_value)} checked="checked"{/if} class="colored-blue" type="checkbox" name="{$conf.ename}[]" value="{$v}" >
+                                                            {elseif condition="$conf.form_type eq 'checkbox' "}
+                                                            <!-- 多选项 -->
+                                                            <div class="checkbox">
+                                                                 <!-- 第一层循环 判断可选值选项中是否有值 -->
+                                                                <?php if($conf['values']):
+                                                                    $arr_values = explode(',',$conf['values']);
+                                                                    $arr_value = explode(',',$conf['value']);
+                                                                    foreach($arr_values as $k=>$v):?>
 
-                                                                <span class="text">{$v}</span>
-                                                            </label>
+                                                                    <label style="margin-right:10px">
+                                                                        <input {if in_array($v,$arr_value)} checked="checked"{/if} class="colored-blue" type="checkbox" name="{$conf.ename}[]" value="{$v}" >
 
-                                                        <?php endforeach;endif;?>
+                                                                        <span class="text">{$v}</span>
+                                                                    </label>
 
-                                                    </div>
+                                                                <?php endforeach;endif;?>
 
-                                                    {elseif condition="$conf.form_type eq 'select' "}
-                                                    <!-- 下拉选 -->
-                                                    <select name="{$conf.ename}" class="form-control">
-                                                        <option value="">请选择</option>}
+                                                            </div>
 
-                                                        <?php if($conf['values']):$arr = explode(',',$conf['values']);foreach($arr as $k=>$v):?>
-                                                        <option value="{$v}" {if $conf['value']==$v} selected="selected" {/if}>{$v}</option>
-                                                        <?php endforeach;endif;?>
-                                                    </select>
+                                                            {elseif condition="$conf.form_type eq 'select' "}
+                                                            <!-- 下拉选 -->
+                                                            <select name="{$conf.ename}" class="form-control">
+                                                                 <option value="">请选择</option>}
 
-                                                {elseif condition="$conf.form_type eq 'file' "}
-                                                    <!-- 上传文件 -->
-                                                    <button class="file-input btn btn-info btn-file">
-                                                    <input type="file"  name="{$conf.ename}">
-                                                    </button>
-                                                    <div style="margin-top:10px;">
-                                                        {if $conf['value']}
-                                                        <img src="__uploads__/{$conf.value}" alt="" height="60">
-                                                        {else /}
-                                                        <span>暂无缩略图</span>
-                                                        {/if}
-                                                    </div>
-                                                {/if}
+                                                                 <?php if($conf['values']):$arr = explode(',',$conf['values']);foreach($arr as $k=>$v):?>
+                                                                 <option value="{$v}" {if $conf['value']==$v} selected="selected" {/if}>{$v}</option>
+                                                                 <?php endforeach;endif;?>
+                                                            </select>
 
-                                                </div>
-                                            </div>
+                                                         {elseif condition="$conf.form_type eq 'file' "}
+                                                            <!-- 上传文件 -->
+                                                            <button class="file-input btn btn-info btn-file">
+                                                               <input type="file"  name="{$conf.ename}">
+                                                            </button>
+                                                            <div style="margin-top:10px;">
+                                                                {if $conf['value']}
+                                                                <img src="__uploads__/{$conf.value}" alt="" height="60">
+                                                                {else /}
+                                                                <span>暂无缩略图</span>
+                                                                {/if}
+                                                            </div>
+                                                         {/if}
 
-                                            {/foreach}
-                                            <div class="form-group">
-                                                <div class="col-sm-offset-2 col-sm-10">
-                                                    <button type="submit" class="btn btn-info">保存信息</button>
-                                                </div>
-                                            </div>
-
-                                    </div>
-                                </div>
-                                <div class="tab-pane" id="FlatTab-2">
-                                <div id="horizontal-form-goods" >
-                                        <div class="form-horizontal">
-                                            {foreach $goodsConf as $key => $conf}
-                                            <div class="form-group">
-                                                <label for="cname" class="col-sm-2 control-label no-padding-right">{$conf.cname}</label>
-                                                <div class="col-sm-6">
-                                                <!-- 单行文本框 -->
-                                                    {if condition="$conf.form_type eq 'input' "}
-                                                    <input class="form-control"  name="{$conf.ename}" required="" type="text" value="{$conf.value}">
-                                                    {elseif condition="$conf.form_type eq 'textarea' "}
-                                                    <!-- 文本域 -->
-                                                    <textarea class="form-control" name="{$conf.ename}">{$conf.value}</textarea>
-                                                    {elseif condition="$conf.form_type =='radio' "}
-                                                    <!-- 单选项 -->
-                                                    <!-- 原生php循环开始用:开始 结束的时候要有结束符号 -->
-                                                    <?php if($conf['values']):
-                                                        $arr = explode(',',$conf['values']);
-                                                        foreach($arr as $k=>$v):?>
-
-                                                    <div class="radio" style="float: left;margin-right:10px;">
-                                                        <label>
-                                                            <input name="{$conf.ename}"  type="radio" class="colored-blue" value="{$v}"
-                                                            {if condition="$conf.value eq $v"} checked="checked" {/if}>
-                                                            <span class="text">{$v}</span>
-                                                        </label>
-                                                    </div>
-                                                    <?php endforeach;endif;?>
-
-                                                    {elseif condition="$conf.form_type eq 'checkbox' "}
-                                                    <!-- 多选项 -->
-                                                    <div class="checkbox">
-                                                        <!-- 第一层循环 判断可选值选项中是否有值 -->
-                                                        <?php if($conf['values']):
-                                                            $arr_values = explode(',',$conf['values']);
-                                                            $arr_value = explode(',',$conf['value']);
-                                                            foreach($arr_values as $k=>$v):?>
-
-                                                            <label style="margin-right:10px">
-                                                                <input {if in_array($v,$arr_value)} checked="checked"{/if} class="colored-blue" type="checkbox" name="{$conf.ename}[]" value="{$v}" >
-
-                                                                <span class="text">{$v}</span>
-                                                            </label>
-
-                                                        <?php endforeach;endif;?>
-
+                                                        </div>
                                                     </div>
 
-                                                    {elseif condition="$conf.form_type eq 'select' "}
-                                                    <!-- 下拉选 -->
-                                                    <select name="{$conf.ename}" class="form-control">
-                                                        <option value="">请选择</option>}
-
-                                                        <?php if($conf['values']):$arr = explode(',',$conf['values']);foreach($arr as $k=>$v):?>
-                                                        <option value="{$v}" {if $conf['value']==$v} selected="selected" {/if}>{$v}</option>
-                                                        <?php endforeach;endif;?>
-                                                    </select>
-
-                                                {elseif condition="$conf.form_type eq 'file' "}
-                                                    <!-- 上传文件 -->
-                                                    <button class="file-input btn btn-info btn-file">
-                                                    <input type="file"  name="{$conf.ename}">
-                                                    </button>
-                                                    <div style="margin-top:10px;">
-                                                        {if $conf['value']}
-                                                        <img src="__uploads__/{$conf.value}" alt="" height="60">
-                                                        {else /}
-                                                        <span>暂无缩略图</span>
-                                                        {/if}
+                                                    {/foreach}
+                                                    <div class="form-group">
+                                                        <div class="col-sm-offset-2 col-sm-10">
+                                                            <button type="submit" class="btn btn-info">保存信息</button>
+                                                        </div>
                                                     </div>
-                                                {/if}
 
-                                                </div>
-                                            </div>
-                                            {/foreach}
-                                            <div class="form-group">
-                                                <div class="col-sm-offset-2 col-sm-10">
-                                                    <button type="submit" class="btn btn-info">保存信息</button>
-                                                </div>
                                             </div>
                                         </div>
-                                        </form>
+                                        <div class="tab-pane" id="FlatTab-2">
+                                           <div id="horizontal-form-goods" >
+                                                <div class="form-horizontal">
+                                                    {foreach $goodsConf as $key => $conf}
+                                                    <div class="form-group">
+                                                        <label for="cname" class="col-sm-2 control-label no-padding-right">{$conf.cname}</label>
+                                                        <div class="col-sm-6">
+                                                           <!-- 单行文本框 -->
+                                                            {if condition="$conf.form_type eq 'input' "}
+                                                            <input class="form-control"  name="{$conf.ename}" required="" type="text" value="{$conf.value}">
+                                                            {elseif condition="$conf.form_type eq 'textarea' "}
+                                                            <!-- 文本域 -->
+                                                            <textarea class="form-control" name="{$conf.ename}">{$conf.value}</textarea>
+                                                            {elseif condition="$conf.form_type =='radio' "}
+                                                            <!-- 单选项 -->
+                                                            <!-- 原生php循环开始用:开始 结束的时候要有结束符号 -->
+                                                            <?php if($conf['values']):
+                                                                  $arr = explode(',',$conf['values']);
+                                                                  foreach($arr as $k=>$v):?>
+
+                                                            <div class="radio" style="float: left;margin-right:10px;">
+                                                                <label>
+                                                                    <input name="{$conf.ename}"  type="radio" class="colored-blue" value="{$v}"
+                                                                     {if condition="$conf.value eq $v"} checked="checked" {/if}>
+                                                                    <span class="text">{$v}</span>
+                                                                </label>
+                                                            </div>
+                                                            <?php endforeach;endif;?>
+
+                                                            {elseif condition="$conf.form_type eq 'checkbox' "}
+                                                            <!-- 多选项 -->
+                                                            <div class="checkbox">
+                                                                 <!-- 第一层循环 判断可选值选项中是否有值 -->
+                                                                <?php if($conf['values']):
+                                                                    $arr_values = explode(',',$conf['values']);
+                                                                    $arr_value = explode(',',$conf['value']);
+                                                                    foreach($arr_values as $k=>$v):?>
+
+                                                                    <label style="margin-right:10px">
+                                                                        <input {if in_array($v,$arr_value)} checked="checked"{/if} class="colored-blue" type="checkbox" name="{$conf.ename}[]" value="{$v}" >
+
+                                                                        <span class="text">{$v}</span>
+                                                                    </label>
+
+                                                                <?php endforeach;endif;?>
+
+                                                            </div>
+
+                                                            {elseif condition="$conf.form_type eq 'select' "}
+                                                            <!-- 下拉选 -->
+                                                            <select name="{$conf.ename}" class="form-control">
+                                                                 <option value="">请选择</option>}
+
+                                                                 <?php if($conf['values']):$arr = explode(',',$conf['values']);foreach($arr as $k=>$v):?>
+                                                                 <option value="{$v}" {if $conf['value']==$v} selected="selected" {/if}>{$v}</option>
+                                                                 <?php endforeach;endif;?>
+                                                            </select>
+
+                                                         {elseif condition="$conf.form_type eq 'file' "}
+                                                            <!-- 上传文件 -->
+                                                            <button class="file-input btn btn-info btn-file">
+                                                               <input type="file"  name="{$conf.ename}">
+                                                            </button>
+                                                            <div style="margin-top:10px;">
+                                                                {if $conf['value']}
+                                                                <img src="__uploads__/{$conf.value}" alt="" height="60">
+                                                                {else /}
+                                                                <span>暂无缩略图</span>
+                                                                {/if}
+                                                            </div>
+                                                         {/if}
+
+                                                        </div>
+                                                    </div>
+                                                    {/foreach}
+                                                    <div class="form-group">
+                                                        <div class="col-sm-offset-2 col-sm-10">
+                                                            <button type="submit" class="btn btn-info">保存信息</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                </form>
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
-
                             </div>
                         </div>
+                        <!-- 配置列表开始 -->
+
                     </div>
                 </div>
-                <!-- 配置列表开始 -->
             </div>
         </div>
+     <!-- /Page Body -->
     </div>
-</div>
-<!-- /Page Body -->
-</div>
-<!-- /Page Content -->
-</div>
+    <!-- /Page Content -->
+    </div>
 </div>
 
 <!--Basic Scripts-->

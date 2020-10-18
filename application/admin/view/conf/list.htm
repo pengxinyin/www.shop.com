@@ -59,20 +59,20 @@
                                 <th class="text-left" width="10%">中文名称</th>
                                 <th class="text-center" width="8%">表单类型</th>
                                 <th class="text-center" width="8%">配置类型</th>
-                                <th class="text-center" width="20%">默认值</th>
-                                <th class="text-left" width="20%">可选值</th>
+                                <th class="text-center" width="30%">默认值</th>
+                                <th class="text-left" width="14%">可选值</th>
                                 <th class="text-center" width="6%">排序</th>
                                 <th class="text-center" width="10%">操作</th>
                             </tr>
                         </thead>
                         <tbody>
-                          {volist name="confRes" id="conf"}
+                          {volist name="data" id="conf"}
                             <tr>
-                                <td align="center" style="vertical-align: middle;">{$conf.id}</td>
-                                <td align="left" style="vertical-align: middle;">{$conf.ename}</td>
-                                <td align="left" style="vertical-align: middle;">{$conf.cname}</td>
-                                <td align="center" style="vertical-align: middle;">{$conf.form_type}</td>
-                                <td align="center" style="vertical-align: middle;">
+                                <td align="center">{$conf.id}</td>
+                                <td align="left">{$conf.ename}</td>
+                                <td align="left">{$conf.cname}</td>
+                                <td align="center">{$conf.form_type}</td>
+                                <td align="center">
                                     {if condition="$conf.conf_type eq 1"}
                                     <span>店铺配置</span>
                                     {/if}
@@ -80,16 +80,15 @@
                                     <span>商品配置</span>
                                     {/if}
                                 </td>
-                                <td align="center" style="vertical-align: middle;">{$conf.value}</td>
-                                <td align="left" style="vertical-align: middle;">{$conf.values}</td>
+                                <td align="center">{$conf.value}</td>
+                                <td align="left">{$conf.values}</td>
+                                <td align="center" style="vertical-align:middle;">
                                 <!-- sort和img一样要采用数组的形式，不然每次存储的数据是一样的！ -->
                                 <!-- 修改sort要找到修改sort的id -->
-                                <td align="center" style="vertical-align: middle;">
-                                    <input type="text" value="{$conf.sort}" name="sort[{$conf.id}]" style="width: 50px; text-align: center;"> 
-                                 </td>
-                               
-                                <td align="center" >
-                                    <a href="{:url('conf/edit',['id'=>$conf.id])}" class="btn btn-sky btn-sm " style="margin-bottom: 5px;">
+                                  <input type="text" name="sort[{$conf.id}]" value="{$conf.sort}" style="width:60px;text-align:center;">
+                                </td>
+                                <td align="center">
+                                    <a href="{:url('conf/edit',['id'=>$conf.id])}" class="btn btn-sky btn-sm ">
                                         <i class="fa fa-edit"></i> 编辑
                                     </a>
                                     <!-- 删除操作把id传递过去 -->
@@ -118,7 +117,7 @@
                 </div>
                 <!-- 对于发送过来的数据进行分页操作 -->
                 <div style="margin-top:20px; text-align:right;" class="fenye">
-                     {$confRes->render()}
+                     {$data->render()}
                 </div>
 
                 <div>

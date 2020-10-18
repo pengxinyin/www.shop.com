@@ -19,7 +19,7 @@ class Attr extends Controller{
             $map = 1;
        }
        //从数据库查询数据、按照降序排列、并且分页
-       $attrData = $attrObj->alias('a')->field('a.*,t.type_name')->where($map)->join('type t',"a.type_id=t.id")->order('a.id DESC')->paginate(20);
+       $attrData = $attrObj->alias('a')->field('a.*,t.type_name')->where($map)->join('type t',"a.type_id=t.id")->order('a.id DESC')->paginate(6);
 
         //数据分配模板
         $this->assign([

@@ -53,18 +53,18 @@
             <div class="widget-body">
                 <div id="horizontal-form">
                     <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
-                    <input type="hidden" name="id" value="{$confs.id}">
+                    <input type="hidden" name="id" value="{$data.id}">
                         <div class="form-group">
                             <label for="ename" class="col-sm-2 control-label no-padding-right">英文名称</label>
                             <div class="col-sm-6">
-                                <input class="form-control"  placeholder="请输入英文名称" name="ename" required="" type="text" value="{$confs.ename}">
+                                <input class="form-control"  placeholder="请输入英文名称" name="ename" required="" type="text" value="{$data.ename}">
                             </div>
                             <p class="help-block col-sm-4 red">* 必填</p>
                         </div>
                         <div class="form-group">
                             <label for="cname" class="col-sm-2 control-label no-padding-right">中文名称</label>
                             <div class="col-sm-6">
-                                <input class="form-control"  placeholder="请输入中文名称" name="cname" required="" type="text" value="{$confs.cname}" >
+                                <input class="form-control"  placeholder="请输入中文名称" name="cname" required="" type="text" value="{$data.cname}" >
                             </div>
                             <p class="help-block col-sm-4 red">* 必填</p>
                         </div>
@@ -72,12 +72,12 @@
                             <label for="brand_name" class="col-sm-2 control-label no-padding-right">表单类型</label>
                             <div class="col-sm-6 ">
                                 <select name="form_type" class="form-control">
-                                    <option {if condition="$confs.form_type eq 'input'"} selected="selected" {/if}  value="input">input</option>
-                                    <option {if condition="$confs.form_type eq 'radio'"} selected="selected" {/if}   value="radio">radio</option>
-                                    <option {if condition="$confs.form_type eq 'checkbox'"} selected="selected" {/if}   value="checkbox">checkbox</option>
-                                    <option {if condition="$confs.form_type eq 'select'"} selected="selected" {/if}   value="select">select</option>
-                                    <option {if condition="$confs.form_type eq 'textarea'"} selected="selected" {/if}   value="textarea">textarea</option>
-                                    <option {if condition="$confs.form_type eq 'file'"} selected="selected" {/if}   value="file">file</option>
+                                    <option {if condition="$data.form_type eq 'input'"} selected="selected" {/if}  value="input">input</option>
+                                    <option {if condition="$data.form_type eq 'radio'"} selected="selected" {/if}   value="radio">radio</option>
+                                    <option {if condition="$data.form_type eq 'checkbox'"} selected="selected" {/if}   value="checkbox">checkbox</option>
+                                    <option {if condition="$data.form_type eq 'select'"} selected="selected" {/if}   value="select">select</option>
+                                    <option {if condition="$data.form_type eq 'textarea'"} selected="selected" {/if}   value="textarea">textarea</option>
+                                    <option {if condition="$data.form_type eq 'file'"} selected="selected" {/if}   value="file">file</option>
 
                                 </select>
                             </div>
@@ -87,8 +87,8 @@
                             <label for="brand_name" class="col-sm-2 control-label no-padding-right">配置类型</label>
                             <div class="col-sm-6">
                                <select name="conf_type" class="form-control">
-                                    <option  value="1" {if condition="$confs.conf_type eq 1"} selected="selected" {/if}>店铺配置</option>
-                                    <option  value="2" {if condition="$confs.conf_type eq 2"} selected="selected" {/if}>商品配置</option>
+                                    <option  value="1" {if condition="$data.conf_type eq 1"} selected="selected" {/if}>店铺配置</option>
+                                    <option  value="2" {if condition="$data.conf_type eq 2"} selected="selected" {/if}>商品配置</option>
                                 </select>
                             </div>
                             <p class="help-block col-sm-4 red">* 必填</p>
@@ -96,14 +96,14 @@
                         <div class="form-group">
                             <label for="brand_name" class="col-sm-2 control-label no-padding-right">可选值</label>
                             <div class="col-sm-6">
-                               <textarea class="form-control" placeholder="请输入可选值" name="values">{$confs.values}</textarea>
+                               <textarea class="form-control" placeholder="请输入可选值" name="values">{$data.values}</textarea>
                             </div>
 
                         </div>
                         <div class="form-group">
                             <label for="brand_name" class="col-sm-2 control-label no-padding-right">默认值</label>
                             <div class="col-sm-6">
-                                <input class="form-control"  name="value" type="text" value="{$confs.value}">
+                                <input class="form-control"  name="value" type="text" value="{$data.value}">
                             </div>
 
                         </div>

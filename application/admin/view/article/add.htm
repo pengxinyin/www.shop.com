@@ -65,7 +65,9 @@
                                    <option value="">选择栏目</option>
                                       {volist name="data" id="cate"}
                                         <option  value="{$cate.id}"
-                                        {in name="$cate.id" value="1,2"} disabled="disabled" {/in} >
+                                        {in name="$cate.id" value="1,2"} disabled="disabled" {/in}
+
+                                        >
                                           |<?php echo str_repeat("-",$cate['level']*4)?> {$cate.cate_name}
                                         </option>
                                        {/volist}

@@ -146,7 +146,6 @@ return [
         '__admin__'=>'/static/admin',
         //上传文件目录
         '__uploads__'=>'/static/uploads',
-        //百度编辑器的存放
         '__plus__'=>'/static/plus',
     ],
     // 默认跳转页面对应的模板文件
@@ -240,7 +239,7 @@ return [
     ],
 
     //分页配置
-    'paginate'   => [
+    'paginate'               => [
         'type'      => 'bootstrap',
         'var_page'  => 'page',
         'list_rows' => 15,

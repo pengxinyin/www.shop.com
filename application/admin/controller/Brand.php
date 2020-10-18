@@ -23,7 +23,7 @@ class Brand extends Controller
         if(request()->isPost())
         {
             $data = input('post.');
-            // dump($_FILES);die;
+            // dump($_FILES);
             // dump($data);die;
             // $data['brand_url']; http://
             //判断品牌网址是否带有http://
